@@ -3,6 +3,7 @@ import { transparentize } from "polished";
 import styled from "styled-components";
 import Image from "next/image"
 import Link from "next/link"
+import formatPostDate from "../core/utils/formatPostDate";
 
 interface PostCardProps {
   post: Post.Summary
@@ -20,7 +21,7 @@ export default function PostCard(props: PostCardProps) {
           <Editor>
             <EditorImage src={post.editor.avatarUrls.small} width={64} height={64} />
           </Editor>
-          <PublishDate>ha 3 dias</PublishDate>
+          <PublishDate>{formatPostDate(post.createdAt)}</PublishDate>
           <Title>{props.post.title}</Title>
         </Info>
 
@@ -37,7 +38,7 @@ const Thumbnail = styled.div<{ bg: string }>`
   width: 100%;
   height: 50%;
 
-  background-image: url(${p => p => p.bg});
+  background-image: url(${p => p.bg});
   background-position: center;
   background-size: cover;
 
