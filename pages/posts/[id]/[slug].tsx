@@ -3,6 +3,7 @@ import Head from "next/head"
 import { Post, PostService } from "oliveirarennan-alganews-sdk"
 import ResourceNotFoundError from "oliveirarennan-alganews-sdk/dist/errors/ResourceNotFound.error"
 import { ParsedUrlQuery } from "querystring"
+import Markdown from "../../../components/Markdown"
 import PostHeader from "../../../components/PostHeader"
 
 interface PostProps extends NextPageProps {
@@ -15,7 +16,14 @@ export default function PostPage(props: PostProps) {
   return (
     <>
       <Head>
+        <meta property="og:title" content={props.post?.title} />
+        <meta property="og:site_name" content="AlgaNews" />
+        <meta property="og:url" content="alganews.com.br" />
+        <meta property="og:description" content={props?.post?.body.slice(0, 54)} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={props.post?.imageUrls.medium} />
         <link rel="canonical" href={`http://${props.host}/${props.post?.id}/${props.post?.slug}`} />
+        ,<title>{props.post?.title} | alganews</title>
       </Head>
       {
         props.post && (
@@ -27,6 +35,9 @@ export default function PostPage(props: PostProps) {
               title={props.post?.title}
 
             />
+            <Markdown>
+              {props.post.body}
+            </Markdown>
 
           </>
         )
