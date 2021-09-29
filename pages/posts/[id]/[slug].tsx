@@ -5,6 +5,7 @@ import ResourceNotFoundError from "oliveirarennan-alganews-sdk/dist/errors/Resou
 import { ParsedUrlQuery } from "querystring"
 import Markdown from "../../../components/Markdown"
 import PostHeader from "../../../components/PostHeader"
+import { DiscussionEmbed } from 'disqus-react';
 
 interface PostProps extends NextPageProps {
   post?: Post.Detailed;
@@ -38,6 +39,17 @@ export default function PostPage(props: PostProps) {
             <Markdown>
               {props.post.body}
             </Markdown>
+            <DiscussionEmbed
+              shortname='alganewsrno'
+              config={
+                {
+                  url: `http://${props.host}/${props.post?.id}/${props.post?.slug}`,
+                  identifier: String(props.post.id),
+                  title: props.post.title,
+                  language: 'pt_BR' //e.g. for Traditional Chinese (Taiwan)	
+                }
+              }
+            />
 
           </>
         )

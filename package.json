@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.1.2",
     "babel-plugin-styled-components": "^1.13.2",
     "date-fns": "^2.24.0",
+    "disqus-react": "^1.1.2",
     "next": "11.1.2",
     "oliveirarennan-alganews-sdk": "^2.7.0",
     "polished": "^4.1.3",
